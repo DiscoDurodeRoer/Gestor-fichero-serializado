@@ -101,4 +101,39 @@ public class GestorFicheroSerializado<T> {
         return datos;
     }
 
+    /**
+     * Muestra los datos de la lista, la clase debe tener un toString
+     */
+    public void mostrarDatos() {
+        for (T e : datos) {
+            System.out.println(e);
+        }
+    }
+
+    public boolean existeDato(T elemento) {
+
+        for (T e : datos) {
+            if (e.equals(elemento)) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    public void borrarDato(T elemento) {
+
+        if (datos.remove(elemento)) {
+            ArrayList<T> copia = datos;
+            datos = new ArrayList<>();
+
+            fichero.delete();
+
+            for (T e : copia) {
+                guardarDato(e);
+            }
+        }
+
+    }
 }
